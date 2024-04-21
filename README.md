@@ -8,3 +8,6 @@ this is a simple game i have made using raylib just for a hobby project trying t
 
 
 ![alt text](https://github.com/faom002/EscapeGame/blob/main/EscapeGame/Screenshot%202024-04-21%2016-02-28.png)
+
+## Status
+this game is currently in progress
