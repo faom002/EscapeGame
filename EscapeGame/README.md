@@ -8,3 +8,5 @@ this is a simple game i have made using raylib just for a hobby project trying t
 
 
 
+https://github.com/faom002/EscapeGame/edit/main/EscapeGame/README.md
+![alt text](https://github.com/faom002/EscapeGame/edit/main/EscapeGame/Screenshot 2024-04-21 16-02-28.png)
