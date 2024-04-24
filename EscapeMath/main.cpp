@@ -1,4 +1,7 @@
+#include <cstddef>
 #include <cstdio>
+#include <cstdlib>
+#include <ctime>
 #include <raylib.h>
 #include <vector>
 
@@ -17,6 +20,15 @@ struct DrawTextComponent {
 
     void Draw() { DrawText("EscapeGame", imag / 2, real / 2, 23, Color(RED)); }
 };
+
+
+
+
+
+
+
+
+
 
 struct RectangleBoyComponent {
     Rectangle player = { 0 };
@@ -63,19 +75,69 @@ struct RectangleBoyComponent {
 struct LevelBoxes {
     std::vector<Rectangle> boxes;
     std::vector<bool> collisionStates; // Store collision state for each box
+ 
+    bool textCollision;
+
 
     LevelBoxes(std::vector<Rectangle> boxes) : boxes{boxes} {
         collisionStates.resize(boxes.size(), false); // Initialize collision states for all boxes to false
     }
 
     void Draw() {
-        for (size_t i = 0; i < boxes.size(); ++i) {
-            if (collisionStates[i]) {
-                DrawRectangleRec(boxes[i], Color(GREEN));
-            } else {
-                DrawRectangleRec(boxes[i], Color(BLACK));
+       
+
+      int num1 = 2; 
+    int num2 = 3;
+    int num3 = 5;
+    int num4 = 23;
+
+    std::vector<int> numbers;
+    numbers.push_back(num1);
+    numbers.push_back(num2);
+    numbers.push_back(num3);
+    numbers.push_back(num4);
+
+    int correctAnswer = 6;
+
+    bool num2Chosen = false;
+    bool num3Chosen = false;
+    bool goal = false;
+
+    for (size_t i = 0; i < boxes.size(); ++i) {
+        if (collisionStates[i]) {
+            if (numbers[i] == 2) {
+                num2Chosen = true;
+            } else if (numbers[i] == 3) {
+                num3Chosen = true;
             }
+
+            if (num2Chosen && num3Chosen) {
+                DrawRectangle(800/2 -110, 500/2 + 180,50, 10, Color(WHITE));
+
+
+		goal = true;
+
+            }
+
+
+	    if (goal) {
+
+		    DrawText("You Win", 800/2 -100, 500/2, 100, Color(RED));
+	    
+	    }
+
+
+                DrawRectangleRec(boxes[i], Color(GREEN));
+
+            DrawText(TextFormat("%d", numbers[i]), boxes[i].x, boxes[i].y, 20, RED);
+        } else {
+            DrawRectangleRec(boxes[i], Color(BLACK));
+            DrawText(TextFormat("%d", numbers[i]), boxes[i].x, boxes[i].y, 20, BLUE);
         }
+    }
+
+    // Draw the correct answer
+    DrawText(TextFormat("%d", correctAnswer), 800 / 2 - 80, 500 / 2 + 20, 30, BLACK);        
     }
 
     void UpdateCollisionState(const Rectangle& player) {
@@ -90,7 +152,7 @@ struct LevelBoxes {
 struct LevelComponent {
     
 
-	Rectangle map = {800/2 -190, 500/2 -10 ,400 ,400};
+	Rectangle map = {800/2 -190, 500/2 -10 ,200 ,200};
 
  
 	bool collisionState = false;	
@@ -131,10 +193,14 @@ int main() {
     Rectangle player = { 800 / 2, 500 / 2, 20, 20 };
     Rectangle box1 = { 800 / 2 - 40, 500 / 2, 16, 16 };
     Rectangle box2 = { 800 / 2 - 40, 500 / 2 + 40, 16, 16 };
+    Rectangle box3 = { 800 / 2 - 120, 500 / 2 + 40, 16, 16 };
+    Rectangle box4 = { 800 / 2 - 120, 500 / 2, 16, 16 };
 
     std::vector<Rectangle> boxesToPassOn;
     boxesToPassOn.push_back(box1);
     boxesToPassOn.push_back(box2);
+    boxesToPassOn.push_back(box3);
+    boxesToPassOn.push_back(box4);
 
     auto text = Game::DrawTextComponent(0, 0);
     auto rectanglePlayer = Game::RectangleBoyComponent(player);
