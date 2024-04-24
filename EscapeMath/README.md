@@ -1,4 +1,4 @@
-# EscapeGame 
+# EscapeMath 
 
 ## Installation
 Currently only working with Linux OS, clone the repo and then g++ main.cpp -o main -lraylib then ./main

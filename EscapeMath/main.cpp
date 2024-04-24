@@ -18,7 +18,7 @@ struct DrawTextComponent {
 
     DrawTextComponent(float real, float imag) : real{ real }, imag{ imag } {};
 
-    void Draw() { DrawText("EscapeGame", imag / 2, real / 2, 23, Color(RED)); }
+    void Draw() { DrawText("EscapeMath", imag / 2, real / 2, 23, Color(RED)); }
 };
 
 
